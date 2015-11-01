@@ -1,0 +1,31 @@
+<div class="col-md-12">
+
+	<h1>{{viewName}}</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{assignment.name}}</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>Student</td>
+						<td>Possible</td>
+						<td>Percentage</td>
+						<td>Grade</td>
+						<td>Comment</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="grade in grades">
+						<td>{{grade.student.firstName + " " + grade.student.lastName}}</td>
+						<td>{{grade.assignment.maxPoints}}</td>
+						<td>{{grade.points/grade.assignment.maxPoints * 100 | number:2}}</td>
+						<td>{{grade.points}}</td>
+						<td>{{grade.comment}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

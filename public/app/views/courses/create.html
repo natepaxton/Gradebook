@@ -1,0 +1,121 @@
+<div class="col-lg-12">
+
+	<!--Header for view type-->
+	<div class="row">                
+		<div class="col-lg-12">
+			<h2>{{viewName}}</h2>
+			<hr/>
+		</div>
+	</div>
+	<!--End header-->
+
+	<!--Begin course create form-->
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label for="courseName" class="col-sm-2 control-label">Course Name</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="courseName" placeholder="Enter Course Name" ng-model="courseInfo.name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="courseNumber" class="col-sm-2 control-label">Course Number</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="courseNumber" placeholder="Enter Course Number" ng-model="courseInfo.courseNum">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comments" class="col-sm-2 control-label">Comments</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" id="comments" rows="3" placeholder="Enter Comments" ng-model="courseInfo.comments"></textarea>
+			</div>
+		</div>
+
+		<div class="col-sm-2">
+			<label for="courseStudentAccordion control-label">Add Students</label>
+		</div>
+		<div class="col-sm-10">
+			<div class="accordion" id="courseStudentAccordion">
+				<div class="accordion-group">
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="courseStudentAccordion" href="#courseStudentCollapse">
+							Add Students
+						</a>
+					</div>
+					<div id="courseStudentCollapse" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<div class="col-sm-6">
+								<table class="table col-sm-6">
+									<thead>
+										<tr>
+											<th>Students in course</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="student in courseInfo.studentsIn">
+											<td><button class="btn btn-theme04" ng-click="toggleOut(student, $index)">{{student.firstName + " " + student.lastName}}<span class="pull-right"> <i class="fa fa-minus"></i></button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-sm-6">
+								<table class="table col-sm-6">
+									<thead>
+										<tr>
+											<th>Students</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="student in courseInfo.studentsOut">
+											<td><button class="btn btn-theme05" ng-click="toggleIn(student, $index)">{{student.firstName + " " + student.lastName}}<span class="pull-right"><i class="fa fa-plus"></i></button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--	-->
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-theme" ng-click="postData()">Submit</button>
+				<button type="button" class="btn btn-theme04" ng-click="cancel()">Cancel</button>
+			</div>
+		</div>
+	</form>	
+	<!--End course create form-->
+
+	<br/>
+	<br/>
+	<!--Validation alerts-->
+	<span ng-show="nameRequired">
+		<div class="alert alert-danger">{{nameRequired}}</div>
+	</span>
+	<span ng-show="numRequired">
+		<div class="alert alert-danger">{{numRequired}}</div>
+	</span>
+	<span ng-show="failed">
+		<div class="alert alert-danger">{{failed}}</div>
+	</span>
+	
+	<!--Testing Angular bindings
+	<table class="table table-striped">
+		<caption>Bindings:</caption>
+		<thead>
+			<tr>
+				<th>Course Name</th>
+				<th>Course Number</th>
+				<th>Comments</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{courseInfo.name}}</td>
+				<td>{{courseInfo.courseNum}}</td>
+				<td>{{courseInfo.comments}}</td>
+			</tr>
+		</tbody>
+	</table>-->
+</div>

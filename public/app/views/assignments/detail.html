@@ -1,0 +1,85 @@
+<div class="col-lg-12">
+
+	<!--Header for view type-->
+	<h1>{{viewType}}</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{assignment.name}}</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name<button type="button" class="btn btn-default pull-right" ng-click="editName()"><i class="fa fa-edit"></i></button></th>
+						<th>Points<button type="button" class="btn btn-default pull-right" ng-click="editPoints()"><i class="fa fa-edit"></i></button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-hide="nameEdit">{{assignment.name}}</td>
+						<td ng-show="nameEdit">
+							<input type="text" class="form-control" id="name" placeholder="{{assignment.name}}" ng-model="assignment.name">
+						</td>
+						<td ng-hide="pointsEdit">{{assignment.maxPoints}}</td>
+						<td ng-show="pointsEdit">
+							<input type="text" class="form-control" id="num" placeholder="{{assignment.maxPoints}}" ng-model="assignment.maxPoints">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Description<button type="button" class="btn btn-default pull-right" ng-click="editDesc()"><i class="fa fa-edit"></i></button></th>
+						<th>Comment<button type="button" class="btn btn-default pull-right" ng-click="editComm()"><i class="fa fa-edit"></i></button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-hide="descEdit">{{assignment.description}}</td>
+						<td ng-show="descEdit">
+							<input type="text" class="form-control" id="name" placeholder="{{assignment.description}}" ng-model="assignment.description">
+						</td>
+						<td ng-hide="commEdit">
+							<ul>
+								<li ng-repeat="comment in assignment.comments">{{comment}}</li>
+							</ul>
+						</td>
+						<td ng-show="commEdit">
+							<input type="text" class="form-control" id="num" placeholder="Enter Comment" ng-model="comment">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<hr/>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<td>Student</td>
+						<td>Possible</td>
+						<td>Percentage</td>
+						<td>Points</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="grade in grades">
+						<td>{{grade.student.firstName + " " + grade.student.lastName}}</td>
+						<td>{{grade.assignment.maxPoints}}</td>
+						<td>{{grade.points / grade.assignment.maxPoints * 100 | number:2}}</td>
+						<td>{{grade.points}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div>
+				<span class="pull-right">
+					<button type="button" class="btn btn-theme" ng-click="updateAssignment(assignment._id)">Save</button>
+					<a ui-sref="assignmentState"><button type="button" class="btn btn-theme04" >Cancel</button></a>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
